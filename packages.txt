@@ -6,10 +6,7 @@ libxrender1
 libgomp1
 libgcc-s1
 libstdc++6
-libc6
 libcairo2
 libpango1.0-0
 libpangocairo-1.0-0
-libgdk-pixbuf2.0-0
-libffi7
-shared-mime-info 
+libgdk-pixbuf2.0-0 
