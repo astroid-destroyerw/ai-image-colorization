@@ -1,28 +1,24 @@
 # AI Image Colorization
 
-A Streamlit application that uses deep learning to colorize black and white images. The application provides an intuitive interface for uploading images, adjusting colorization parameters, and downloading the results.
+A Streamlit web application that colorizes black and white images using deep learning.
 
 ## Features
 
-- Upload and process black and white images
-- Multiple colorization models (Standard, Historical, Portrait)
-- Interactive image comparison with slider
-- Image enhancement options (brightness, contrast, saturation)
-- Image restoration features (denoising, sharpening, upscaling)
-- Style transfer capability
-- Dark mode support
-- Version history tracking
-- Download processed images
+- Upload and colorize black and white images
+- Interactive comparison between original and colorized images
+- Image enhancement options
+- Support for multiple image formats
+- User-friendly interface
 
-## Installation
+## Local Setup
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/ai-image-colorization.git
+git clone https://github.com/astroid-destroyerw/ai-image-colorization.git
 cd ai-image-colorization
 ```
 
-2. Create a virtual environment:
+2. Create a virtual environment and activate it:
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
@@ -33,27 +29,34 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## Usage
+4. Download the model file:
+- Download the `colorization_release_v2.caffemodel` from [here](https://www.dropbox.com/s/dx0qvhhp5hbcx7z/colorization_release_v2.caffemodel?dl=1)
+- Place it in the `models/` directory
 
-1. Start the Streamlit application:
+5. Run the application:
 ```bash
 streamlit run app.py
 ```
 
-2. Open your web browser and navigate to the URL shown in the terminal (typically http://localhost:8501)
+## Deployment on Streamlit Cloud
 
-3. Upload a black and white image using the file uploader
+1. Fork this repository
+2. Sign up for [Streamlit Cloud](https://streamlit.io/cloud)
+3. Create a new app and connect it to your forked repository
+4. Add the following secrets in Streamlit Cloud settings:
+   - Navigate to your app settings
+   - Add the model URL as a secret:
+     - Name: `MODEL_URL`
+     - Value: `https://www.dropbox.com/s/dx0qvhhp5hbcx7z/colorization_release_v2.caffemodel?dl=1`
 
-4. Adjust the colorization parameters in the sidebar:
-   - Select a colorization model
-   - Adjust color intensity
-   - Modify image enhancement settings
-   - Enable/disable restoration options
-   - Apply style transfer (optional)
+## Model Files
+The following files are required but not included in the repository due to size:
+- `models/colorization_release_v2.caffemodel` (122.97 MB)
 
-5. View the results with the interactive comparison slider
+These files will be downloaded automatically when deploying to Streamlit Cloud.
 
-6. Download the colorized image using the download button
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Project Structure
 

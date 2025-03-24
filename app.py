@@ -32,6 +32,7 @@ from utils.ui_components import (
 from config import IMAGE_SETTINGS, COLOR_RANGES, BATCH_SETTINGS
 from datetime import datetime
 import shutil
+import urllib.request
 
 # Set page config
 st.set_page_config(
@@ -249,6 +250,25 @@ uploaded_file = st.file_uploader(
     "Drag and drop an image here or click to upload",
     type=IMAGE_SETTINGS['supported_formats']
 )
+
+def download_model():
+    """Download the model file if it doesn't exist."""
+    model_path = "models/colorization_release_v2.caffemodel"
+    if not os.path.exists("models"):
+        os.makedirs("models")
+    
+    if not os.path.exists(model_path):
+        st.info("Downloading model file... This may take a few minutes.")
+        model_url = st.secrets.get("MODEL_URL", "https://www.dropbox.com/s/dx0qvhhp5hbcx7z/colorization_release_v2.caffemodel?dl=1")
+        try:
+            urllib.request.urlretrieve(model_url, model_path)
+            st.success("Model downloaded successfully!")
+        except Exception as e:
+            st.error(f"Error downloading model: {str(e)}")
+            st.stop()
+
+# Download model at startup
+download_model()
 
 if uploaded_file:
     try:
