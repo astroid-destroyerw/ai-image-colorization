@@ -3,4 +3,7 @@ libglib2.0-0
 libsm6
 libxext6
 libxrender1
-libxrender-dev 
+libxrender-dev
+libgomp1
+libgcc-s1
+libstdc++6 
