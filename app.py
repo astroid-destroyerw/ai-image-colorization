@@ -33,6 +33,9 @@ from config import IMAGE_SETTINGS, COLOR_RANGES, BATCH_SETTINGS
 from datetime import datetime
 import shutil
 import urllib.request
+import sys
+import torch
+import torchvision
 
 # Set page config
 st.set_page_config(
@@ -259,12 +262,18 @@ def download_model():
     
     if not os.path.exists(model_path):
         st.info("Downloading model file... This may take a few minutes.")
-        model_url = st.secrets.get("MODEL_URL", "https://www.dropbox.com/s/dx0qvhhp5hbcx7z/colorization_release_v2.caffemodel?dl=1")
         try:
-            urllib.request.urlretrieve(model_url, model_path)
+            # Try to get model URL from secrets first
+            model_url = st.secrets.get("MODEL_URL", "https://www.dropbox.com/s/dx0qvhhp5hbcx7z/colorization_release_v2.caffemodel?dl=1")
+            
+            # Download with progress bar
+            with st.spinner("Downloading model..."):
+                urllib.request.urlretrieve(model_url, model_path)
             st.success("Model downloaded successfully!")
         except Exception as e:
             st.error(f"Error downloading model: {str(e)}")
+            st.info("Please download the model manually from: https://www.dropbox.com/s/dx0qvhhp5hbcx7z/colorization_release_v2.caffemodel?dl=1")
+            st.info("Place it in the 'models' directory")
             st.stop()
 
 # Download model at startup

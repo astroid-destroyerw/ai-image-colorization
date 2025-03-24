@@ -2,4 +2,11 @@ libgl1
 libglib2.0-0
 libsm6
 libxext6
-libxrender1 
+libxrender1
+libgomp1
+libgcc-s1
+libstdc++6
+libcairo2
+libpango1.0-0
+libpangocairo-1.0-0
+libgdk-pixbuf2.0-0 
